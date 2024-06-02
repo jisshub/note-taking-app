@@ -10,6 +10,7 @@ const App = () => {
   const [currentNote, setCurrentNote] = useState(null);
 
   useEffect(() => {
+    // Load notes from local storage
     const savedNotes = JSON.parse(localStorage.getItem('notes')) || [];
     setNotes(savedNotes);
   }, []);
