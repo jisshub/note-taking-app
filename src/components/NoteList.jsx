@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ListGroup, Button, Badge, Form } from "react-bootstrap";
+import { ListGroup, Button, Badge, Form, InputGroup } from "react-bootstrap";
 
 const NoteList = ({ notes, setCurrentNote, deleteNote }) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -8,14 +8,14 @@ const NoteList = ({ notes, setCurrentNote, deleteNote }) => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (searchQuery) {
-        const filtered = notes.filter(note =>
+        const filtered = notes.filter((note) =>
           note.title.toLowerCase().includes(searchQuery.toLowerCase())
         );
         setFilteredNotes(filtered);
       } else {
         setFilteredNotes(notes);
       }
-    }, 2000);
+    }, 1000);
 
     return () => clearTimeout(timeoutId);
   }, [searchQuery, notes]);
@@ -27,13 +27,17 @@ const NoteList = ({ notes, setCurrentNote, deleteNote }) => {
   return (
     <>
       <Form.Group className="mb-3" controlId="searchNotes">
-        <Form.Control
-          type="text"
-          placeholder="Search notes..."
-          value={searchQuery}
-          onChange={handleSearchChange}
-        />
-        <i className="bi bi-search"></i>
+        <InputGroup>
+          <Form.Control
+            type="text"
+            placeholder="Search notes..."
+            value={searchQuery}
+            onChange={handleSearchChange}
+          />
+          <InputGroup.Text>
+            <i className="bi bi-search"></i>
+          </InputGroup.Text>
+        </InputGroup>
       </Form.Group>
       <ListGroup>
         {filteredNotes.map((note) => (
