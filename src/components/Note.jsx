@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Note = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  return <div></div>;
+};
 
-export default Note
+export default Note;

@@ -1,16 +1,15 @@
-import React, {useState, useEffect} from 'react'
-import Note from './components/Note';
-import NoteForm from './components/NoteForm';
-import NoteList from './components/NoteList';
-import './App.scss';
-import { Col, Container, Row } from 'react-bootstrap';
 
-function App() {
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import NoteList from './components/NoteList';
+import NoteForm from './components/NoteForm';
+import './App.scss';
+
+const App = () => {
   const [notes, setNotes] = useState([]);
   const [currentNote, setCurrentNote] = useState(null);
 
   useEffect(() => {
-    // Load notes from local storage
     const savedNotes = JSON.parse(localStorage.getItem('notes')) || [];
     setNotes(savedNotes);
   }, []);
@@ -33,28 +32,18 @@ function App() {
     localStorage.setItem('notes', JSON.stringify(updatedNotes));
   };
 
-
   return (
     <Container>
-    <Row>
-      <Col md={4}>
-        <NoteList 
-          notes={notes} 
-          setCurrentNote={setCurrentNote} 
-          deleteNote={deleteNote} 
-        />
-      </Col>
-      <Col md={8}>
-        <NoteForm 
-          addNote={addNote} 
-          editNote={editNote} 
-          currentNote={currentNote} 
-          setCurrentNote={setCurrentNote} 
-        />
-      </Col>
-    </Row>
-  </Container>
+      <Row>
+        <Col md={4}>
+          <NoteList notes={notes} setCurrentNote={setCurrentNote} deleteNote={deleteNote} />
+        </Col>
+        <Col md={8}>
+          <NoteForm addNote={addNote} editNote={editNote} currentNote={currentNote} setCurrentNote={setCurrentNote} notes={notes} />
+        </Col>
+      </Row>
+    </Container>
   );
-}
+};
 
 export default App;
