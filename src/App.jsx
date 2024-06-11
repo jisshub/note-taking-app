@@ -37,10 +37,19 @@ const App = () => {
     <Container>
       <Row>
         <Col md={4}>
-          <NoteList notes={notes} setCurrentNote={setCurrentNote} deleteNote={deleteNote} />
+          <NoteList 
+            notes={notes} 
+            setCurrentNote={setCurrentNote} 
+            deleteNote={deleteNote} />
         </Col>
         <Col md={8}>
-          <NoteForm addNote={addNote} editNote={editNote} currentNote={currentNote} setCurrentNote={setCurrentNote} notes={notes} />
+          <NoteForm 
+            addNote={addNote} 
+            editNote={editNote} 
+            currentNote={currentNote} 
+            setCurrentNote={setCurrentNote} 
+            notes={notes} 
+          />
         </Col>
       </Row>
     </Container>
